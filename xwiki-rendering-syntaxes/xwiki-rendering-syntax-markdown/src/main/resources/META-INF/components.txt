@@ -1,0 +1,4 @@
+org.xwiki.rendering.internal.MarkdownBlockRenderer
+org.xwiki.rendering.internal.MarkdownChainingRenderer
+org.xwiki.rendering.internal.MarkdownRenderer
+org.xwiki.rendering.internal.MarkdownRendererFactory

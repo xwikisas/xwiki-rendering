@@ -75,3 +75,17 @@ third paragraph
 
 
 fourth paragraph
+.#-----------------------------------------------------
+.expect|markdown/1.0
+.#-----------------------------------------------------
+first  
+paragraph
+
+second paragraph
+&nbsp;  
+
+third paragraph
+&nbsp;  
+&nbsp;  
+
+fourth paragraph

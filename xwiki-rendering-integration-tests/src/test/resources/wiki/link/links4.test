@@ -28,3 +28,12 @@ endDocument
 .input|xhtml/1.0
 .#-----------------------------------------------------
 <p><!--startwikilink:false|-|url|-|http://xwiki.org--><span class="wikiexternallink"><a href="http://xwiki.org">label</a></span><!--stopwikilink--></p>
+.#-----------------------------------------------------
+.input|markdown/1.0|skip
+.# Parser bug that generates an extra newline
+.#-----------------------------------------------------
+[label](http://xwiki.org)
+.#-----------------------------------------------------
+.expect|markdown/1.0
+.#-----------------------------------------------------
+[label](http://xwiki.org)
