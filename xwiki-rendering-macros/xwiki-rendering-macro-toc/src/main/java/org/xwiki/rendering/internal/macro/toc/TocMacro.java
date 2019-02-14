@@ -223,6 +223,8 @@ public class TocMacro extends AbstractMacro<TocMacroParameters>
             tocBlock = currentBlock.getRoot();
         }
 
+        tocBlock.setParameter("class", "toc-block");
+
         return tocBlock;
     }
 
