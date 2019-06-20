@@ -185,6 +185,7 @@ public class XWikiSyntaxChainingRenderer extends AbstractChainingPrintRenderer i
             && getXWikiPrinter().getBuffer().charAt(getXWikiPrinter().getBuffer().length() - 1) == '[') {
             getXWikiPrinter().setEscapeLastChar(true);
         }
+        handleEmptyParameters();
         getXWikiPrinter().flush();
         getXWikiPrinter().setBeforeLink(false);
 
@@ -229,8 +230,7 @@ public class XWikiSyntaxChainingRenderer extends AbstractChainingPrintRenderer i
         // If the previous format had parameters and the parameters are different from the current ones then close them
         if (this.previousFormatParameters != null) {
             if (parameters.isEmpty()) {
-                // print("(%%)");
-                // this.previousFormatParameters = null;
+                 // do nothing
             } else if (!this.previousFormatParameters.equals(parameters)) {
                 this.previousFormatParameters = null;
                 printParameters(parameters, false);
@@ -310,6 +310,14 @@ public class XWikiSyntaxChainingRenderer extends AbstractChainingPrintRenderer i
         }
         if (!parameters.isEmpty()) {
             this.previousFormatParameters = parameters;
+        }
+    }
+
+    private void handleEmptyParameters()
+    {
+        if (this.previousFormatParameters != null) {
+            getPrinter().print("(%%)");
+            this.previousFormatParameters = null;
         }
     }
 
@@ -457,6 +465,9 @@ public class XWikiSyntaxChainingRenderer extends AbstractChainingPrintRenderer i
 
         // When we encounter a macro marker we ignore all other blocks inside since we're going to use the macro
         // definition wrapped by the macro marker to construct the xwiki syntax.
+        // However we need to handle the closing of any format block since that's normally handled by any print() calls
+        // but since we use a VoidWikiPrinter this won't have any effect.
+        handleEmptyParameters();
         pushPrinter(new XWikiSyntaxEscapeWikiPrinter(VoidWikiPrinter.VOIDWIKIPRINTER, getXWikiSyntaxListenerChain()));
     }
 
@@ -727,10 +738,7 @@ public class XWikiSyntaxChainingRenderer extends AbstractChainingPrintRenderer i
     private void print(String text, boolean isDelayed)
     {
         // Handle empty formatting parameters.
-        if (this.previousFormatParameters != null) {
-            getPrinter().print("(%%)");
-            this.previousFormatParameters = null;
-        }
+        handleEmptyParameters();
 
         if (isDelayed) {
             getXWikiPrinter().printDelayed(text);
