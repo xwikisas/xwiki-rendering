@@ -73,4 +73,10 @@ public abstract class AbstractMessageMacro extends AbstractBoxMacro<BoxMacroPara
     {
         this.contentParser.prepareContentWiki(macroBlock);
     }
+
+    @Override
+    public boolean isExecutionIsolated(BoxMacroParameters parameters, String content)
+    {
+        return true;
+    }
 }
