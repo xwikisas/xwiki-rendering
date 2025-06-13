@@ -4,6 +4,14 @@
 
 XWiki Platform, XWiki Commons and XWiki Rendering are part of the [XWiki.org](http://www.xwiki.org/) software forge. They are released together and share the same version.
 
+## Backported issues
+
+The following list of issues were backported but not released (was supposed to be released as 14.10.22 but the branch was dropped before):
+
+Bug
+
+    [XRENDERING-749] - Deprecated MacroDescriptor's getDefaultCategory() is ignored
+
 ## Documentation
 * [Documentation](http://rendering.xwiki.org/xwiki/bin/view/Main/)
 * [API](http://platform.xwiki.org/xwiki/bin/view/DevGuide/API)
